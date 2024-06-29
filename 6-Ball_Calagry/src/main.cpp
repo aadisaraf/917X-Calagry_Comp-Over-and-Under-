@@ -140,42 +140,51 @@ void autonomous() {
 	chassis.moveToPoint(0, 5, 500);
 	pros::delay(250);
 	intake.move(0);
-	chassis.moveToPoint(0, -27, 2000,{.forwards = false},false);
+	chassis.moveToPoint(0, -27, 1000,{.forwards = false},false);
 	rearLeftWings.set_value(true);
   chassis.turnToHeading(-45, 500);
 	chassis.moveToPoint(13, -45, 1000,{.forwards = false},false);
   rearLeftWings.set_value(false);
-  chassis.turnToHeading(-90,1000,{},false);
-  rearLeftWings.set_value(true);
-  chassis.moveToPoint(48,-55,500,{.forwards = false},false);
-  rearLeftWings.set_value(false);
+  pros::delay(100);
+  chassis.turnToHeading(-60,500,{});
+  rearRightWings.set_value(true);
+  chassis.moveToPoint(48,-57,1000,{.forwards = false,.minSpeed = 120},false);
+  rearRightWings.set_value(false); 
+  pros::delay(200);
   chassis.turnToHeading(0, 1000);
 
-  chassis.moveToPoint(28, -7, 1000,{},false);
-  chassis.turnToHeading(100, 500);
-  chassis.moveToPoint(50, -17, 1000,{},false);
+  chassis.moveToPoint(22, -4, 1000,{},false);
+  chassis.turnToPoint(47, -18, 1000,{.maxSpeed = 100},false);
+//
   intake.move(-90);
-
-  pros::delay(200);
-  chassis.turnToHeading(-10, 1000);
-  intake.move(100);
-  chassis.moveToPoint(41,-5, 1000,{},false);
   pros::delay(500);
+
+  chassis.turnToPoint(37, 15, 1000);
+  intake.move(100);
+  chassis.moveToPoint(37,15, 1000,{},false);//first intake
+  pros::delay(700);
   intake.move(0);
   chassis.turnToHeading(160, 1000,{},false);
   intake.move(-120);
   pros::delay(500);
   intake.move(0);
-  chassis.turnToHeading(90, 1000);
+  chassis.turnToPoint(58, 20, 1000);
   intake.move(120);
-  chassis.moveToPoint(62, 17, 1000);
-  chassis.turnToHeading(180,1000,{.maxSpeed=100},false);
-  intake.move(-120);
-  chassis.turnToHeading(0,1000);
+  chassis.moveToPoint(58, 20, 1000,{},false);//last intake
+  chassis.turnToHeading(0, 1000,{.minSpeed=100},false);
   rearLeftWings.set_value(true);
   rearRightWings.set_value(true);
-  chassis.moveToPoint(60, -24, 1000,{.forwards = false,.minSpeed = 120});
+  chassis.turnToHeading(0, 500,{.minSpeed = 120});
+  chassis.moveToPoint(56, -24, 500,{.forwards = false,.minSpeed = 127});
+  chassis.swingToHeading(180, DriveSide::LEFT, 1000,{.minSpeed = 100},false);
+  intake.move(-120);
 
+  // chassis.turnToHeading(180,1000,{.maxSpeed=80},false);
+  // intake.move(-120);
+  // chassis.turnToHeading(0, 1000);
+  // rearLeftWings.set_value(true);
+  // rearRightWings.set_value(true);
+  // chassis.moveToPoint(62, -24, 1000,{.forwards = false,.minSpeed = 120});
 }
 
 /**
